@@ -76,7 +76,19 @@ module CouchRest
         end
       end
     end
-    
+
+    def self.create(*args, &block)
+      doc = new(*args, &block)
+      doc.create
+      doc
+    end
+
+    def self.create!(*args, &block)
+      doc = new(*args, &block)
+      doc.create!
+      doc
+    end
+
     # Temp solution to make the view_by methods available
     def self.method_missing(m, *args, &block)
       if has_view?(m)
